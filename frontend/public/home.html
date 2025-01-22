@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: rgb(207, 207, 207);
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 160px);
+    }
+
+    .card-container {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #191919;
+      color: #fff;
+      border-radius: 0.25rem;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #333;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: #f8f9fa;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <nav class="flex items-center justify-between p-4 bg-black text-white">
+    <div class="flex items-center space-x-4">
+      <span class="font-bold"><img src="WhatsApp Image 2025-01-10 at 11.08.58_0d5ad5a3.jpg" width="25px" class="border-radius: 25%;" height="25px" alt="Logo"></span>
+      <a href="#" class="hover:text-gray-200 transition-colors">Home</a>
+      <a href="attendence.html" class="hover:text-gray-200 transition-colors">Attendance</a>
+      <a href="timecard.html" class="hover:text-gray-200 transition-colors">Working Hours</a>
+      <a href="#" class="hover:text-gray-200 transition-colors">About the Company</a>
+    </div>
+    <a href="./index.html" class="text-red-500 hover:text-red-700 transition-colors">Logout</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="card-container">
+      <div class="card">
+        <img src="images.jpg" alt="Attendance Image">
+        <h2><b>Register Your Attendance</b></h2>
+        <hr>
+        <p>Manage your attendance by checking in and out</p>
+        <a href="attendence.html" class="btn">Go to Attendance</a>
+      </div>
+      <div class="card">
+        <img src="working.jpg" alt="Working Hours Image">
+        
+        <h2><b>Work Log</b></h2>
+        <hr>
+        <p>View your working hour statistics and performance trends.</p>
+        <a href="timecard.html" class="btn">View Statistics</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 AXZ Pvt Ltd. All rights reserved.</p>
+  </footer>
+</body>
+</html>

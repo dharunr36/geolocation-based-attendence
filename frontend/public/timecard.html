@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timecard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/timecard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="./attendence.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+            <h1>Timecard</h1>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary">
+            <div class="card">
+                <h2>Total Hours</h2>
+                <p id="totalHours">-</p>
+            </div>
+            <div class="card">
+                <h2>Overtime</h2>
+                <p id="overtime">-</p>
+            </div>
+
+            
+        </div>
+
+        <!-- Activity Section -->
+        <div class="activity">
+            <h2>Recent Activity</h2>
+            <div id="activityList" class="activity-list">
+                <p>No recent activity to display.</p>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <h2>Weekly Working Hours</h2>
+            <canvas id="hoursChart"></canvas>
+        </div>
+
+
+
+    <script src="js/timecard.js">
+    </script>
+</body>
+</html>
