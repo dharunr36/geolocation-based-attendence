@@ -18,7 +18,8 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 // CORS setup
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://127.0.0.1:5500", // Add more origins if necessary
+  "http://127.0.0.1:5500",
+  "https://geoattend-kewwd88co-dharuns-projects-7c3d278a.vercel.app" // Add more origins if necessary
 ];
 app.use(
   cors({
