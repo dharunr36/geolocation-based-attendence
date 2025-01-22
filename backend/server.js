@@ -1,33 +1,57 @@
-import express  from "express";
+import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import morgan from "morgan";
 
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
-
 import connecttomongodb from "./db/connecttomongoDB.js";
 
-
+// Load environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
+const NODE_ENV = process.env.NODE_ENV || "development";
 
+// CORS setup
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://127.0.0.1:5500", // Add more origins if necessary
+];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
-import cors from 'cors';
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:5500'],
-    credentials: true, // Replace with your frontend URL
-  }));
-
+// Middleware
+app.use(morgan(NODE_ENV === "development" ? "dev" : "combined")); // Detailed logs in development, concise in production
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/auth",authRoutes);
-app.use("/api/user",userRoutes);
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
-app.listen(PORT,()=>{
-    connecttomongodb()
-    console.log(`server running in port ${PORT}`)
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    message: err.message || "Internal Server Error",
+  });
 });
 
+// Connect to MongoDB and Start Server
+connecttomongodb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1); // Exit if the database connection fails
+  });

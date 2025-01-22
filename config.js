@@ -1,6 +1,6 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 module.exports = {
-  host: 'localhost',       // Database host
-  user: 'your_username',   // Your database username
-  password: 'your_password', // Your database password
-  database: 'your_database' // Your database name
+  mongoURI: process.env.MONGO_DB_URI, // MongoDB connection URI from .env file
+  port: process.env.PORT || 3000, // Port for your server
 };
