@@ -77,12 +77,11 @@ export const checkOut = async (req, res) => {
         // Update the attendance record with check-out time
         attendance.checkOutTime = getISTTime();
         await attendance.save();
-        await updateOvertime(userId);
 
-        // Calculate working hours
+        // Calculate working hours for this session
         const checkInTime = attendance.checkInTime;
         const checkOutTime = attendance.checkOutTime;
-        const timeDiff = (checkOutTime - checkInTime) / (1000 * 60 * 60); // Difference in hours
+        const sessionHours = (checkOutTime - checkInTime) / (1000 * 60 * 60); // Difference in hours
 
         // Get the current date (reset to 00:00:00 for the day)
         const today = new Date();
@@ -91,9 +90,15 @@ export const checkOut = async (req, res) => {
         // Find or create a working hours record for the current date and user
         const workingHoursRecord = await WorkingHours.findOneAndUpdate(
             { userId, date: today },
-            { $inc: { totalHours: timeDiff } }, // Increment total hours
-            { new: true, upsert: true } // Create if not found
+            {
+                $inc: { totalHours: sessionHours }, // Increment total hours for the day
+                $setOnInsert: { date: today, overtime: 0 }, // Set default fields if inserting
+            },
+            { new: true, upsert: true } // Create the document if not found
         );
+
+        // Update overtime
+        await updateOvertime(userId);
 
         res.status(200).json({
             message: "Check-out successful",
@@ -106,6 +111,9 @@ export const checkOut = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+
+
+
 
 
 const updateOvertime = async (userId) => {

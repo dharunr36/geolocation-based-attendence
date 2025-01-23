@@ -155,7 +155,7 @@
             }
 
             try {
-                const response = await axios.post("https://geolocation-based-attendence-1.onrender.com/api/auth/checkin", {
+                const response = await axios.post("http://localhost:5000/api/auth/checkin", {
                     userId,
                 });
 
@@ -179,7 +179,7 @@
             }
 
             try {
-                const response = await axios.post("https://geolocation-based-attendence-1.onrender.com/api/auth/checkout", {
+                const response = await axios.post("http://localhost:5000/api/auth/checkout", {
                     userId,
                 });
 
