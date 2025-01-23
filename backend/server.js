@@ -19,9 +19,7 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:5500",
-  "https://geolocation-based-attendence-l7qj-lk2ddoumj.vercel.app/",
-  "https://geolocation-based-attendence-l7qj.vercel.app/",
-  "https://geolocation-based-attendence-l7qj-lk2ddoumj.vercel.app/",
+  "https://geolocation-based-attendence-l7qj-91fv9lpxx.vercel.app/",
   "https://geoattend-iq4uwj4ok-dharuns-projects-7c3d278a.vercel.app/" // Add more origins if necessary
 ];
 app.use(
