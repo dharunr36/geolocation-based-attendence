@@ -19,15 +19,22 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:5500",
-  "https://geolocation-based-attendence-l7qj-91fv9lpxx.vercel.app/",
-  "https://geoattend-iq4uwj4ok-dharuns-projects-7c3d278a.vercel.app/" // Add more origins if necessary
+  "https://geolocation-based-attendence-2.onrender.com/" // No trailing slash
 ];
+
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allows cookies or authorization headers
   })
 );
+
 
 // Middleware
 app.use(morgan(NODE_ENV === "development" ? "dev" : "combined")); // Detailed logs in development, concise in production
