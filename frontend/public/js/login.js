@@ -23,7 +23,7 @@ const handleLogin = async (e) => {
     if (response.ok) {
       // Save the userId in local storage
       localStorage.setItem("userId", result.user._id);
-
+      
       // Redirect to home page
       window.location.href = "./home.html";
     } else {
