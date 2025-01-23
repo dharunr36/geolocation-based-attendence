@@ -22,18 +22,10 @@ const allowedOrigins = [
   "https://geolocation-based-attendence-2.onrender.com/" // No trailing slash
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allows cookies or authorization headers
-  })
-);
+app.use(cors({
+  origin: "*", // Temporarily allow all origins
+  credentials: true
+}));
 
 
 // Middleware
